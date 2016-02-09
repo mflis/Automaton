@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.40"
+            fx:controller="pl.agh.edu.Automaton.controller.MainController">
+    <children>
+        <SplitPane dividerPositions="0.3518" layoutX="72.0" layoutY="80.0" prefHeight="400.0" prefWidth="600.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <VBox prefHeight="598.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <VBox fx:id="generalSettingsVbox">
+                                            <children>
+                                                <Label text="General Settings">
+                                                    <font>
+                                                        <Font name="System Bold" size="20.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Number of cells in row :">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Slider fx:id="cellsInRowSlider" min="5.0" minorTickCount="1"
+                                                        showTickLabels="true" showTickMarks="true"/>
+                                                <Label text="Wrapping">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <ChoiceBox fx:id="wrappingChoiceBox" prefWidth="150.0"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets top="5.0"/>
+                                            </VBox.margin>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="automatonTypeVbox">
+                                    <children>
+                                        <Label text="Automaton Type">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Label>
+                                        <ChoiceBox fx:id="automatonTypeChoiceBox" prefWidth="150.0"/>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="20.0"/>
+                                    </VBox.margin>
+                                </VBox>
+                                <VBox fx:id="additionalSettings" prefHeight="152.0" prefWidth="256.0">
+                                    <children>
+                                        <Label text="Additional Settings">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Label>
+                                        <VBox fx:id="neighbourhoodVbox">
+                                            <children>
+                                                <Label text="Neighbourhood :"/>
+                                                <ChoiceBox fx:id="neighbourhoodChoiceBox" prefWidth="150.0"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </VBox>
+                                        <VBox fx:id="radiusVbox">
+                                            <children>
+                                                <Label text="Radius :"/>
+                                                <TextField fx:id="radiusTextField" onAction="#updateRadius"
+                                                           prefHeight="26.0" prefWidth="62.0" text="1"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </VBox>
+                                        <VBox fx:id="gameOfLifeRulesVbox">
+                                            <children>
+                                                <Label text="Game of Life rules :">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <HBox>
+                                                    <children>
+                                                        <Label text="Born :"/>
+                                                        <TextField fx:id="bornTextField" onAction="#updateBorn"
+                                                                   prefHeight="26.0" prefWidth="51.0" text="3"/>
+                                                        <Label text="Survive :">
+                                                            <HBox.margin>
+                                                                <Insets left="10.0"/>
+                                                            </HBox.margin>
+                                                        </Label>
+                                                        <TextField fx:id="surviveTextField" onAction="#updateSurvive"
+                                                                   prefHeight="26.0" prefWidth="53.0" text="2,3"/>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                        <VBox prefWidth="215.0">
+                                            <children>
+                                                <Label text="Structure">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <ChoiceBox fx:id="structureChoiceBox" prefWidth="150.0"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </VBox>
+                                        <VBox fx:id="elementaryRuleVbox">
+                                            <children>
+                                                <Label text="Elementary Automaton Rule">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="ruleTextField" onAction="#updateRule" text="30"/>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </VBox>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="20.0"/>
+                                    </VBox.margin>
+                                </VBox>
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="runButton" mnemonicParsing="false" onAction="#runAction"
+                                                prefHeight="26.0" prefWidth="81.0" text="Run"/>
+                                        <Button mnemonicParsing="false" onAction="#nextGenAction" text="Next Gen"/>
+                                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearAction"
+                                                prefHeight="26.0" prefWidth="120.0" text="Clear"/>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="10.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                                <VBox>
+                                    <VBox.margin>
+                                        <Insets top="20.0"/>
+                                    </VBox.margin>
+                                    <children>
+                                        <Button fx:id="randomButton" mnemonicParsing="false" onAction="#randomAction"
+                                                text="Random State"/>
+                                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitAction"
+                                                prefHeight="54.0" prefWidth="95.0" text="Exit">
+                                            <font>
+                                                <Font size="29.0"/>
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="canvasParentPane"/>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
