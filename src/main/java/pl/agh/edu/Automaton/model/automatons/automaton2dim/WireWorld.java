@@ -9,6 +9,7 @@ import pl.agh.edu.Automaton.model.states.WireElectronState;
 
 import java.util.Set;
 
+import static pl.agh.edu.Automaton.model.states.WireElectronState.*;
 
 /**
  * represents Wireworld cellular automaton
@@ -34,18 +35,18 @@ public class WireWorld extends Automaton2Dim {
         CellState newState;
         switch (state) {
             case VOID:
-                newState = WireElectronState.VOID;
+                newState = VOID;
                 break;
             case ELECTRON_HEAD:
-                newState = WireElectronState.ELECTRON_TAIL;
+                newState = ELECTRON_TAIL;
                 break;
             case ELECTRON_TAIL:
-                newState = WireElectronState.WIRE;
+                newState = WIRE;
                 break;
             case WIRE:
                 int heads = countElectronHeads(neighbours);
-                if (heads == 1 || heads == 2) newState = WireElectronState.ELECTRON_HEAD;
-                else newState = WireElectronState.WIRE;
+                if (heads == 1 || heads == 2) newState = ELECTRON_HEAD;
+                else newState = WIRE;
                 break;
             default:
                 throw new IllegalArgumentException("code should never reach that place");
@@ -55,13 +56,8 @@ public class WireWorld extends Automaton2Dim {
     }
 
     private int countElectronHeads(Set<Cell> neighbours) {
-        int howMany = 0;
-        for (Cell cell : neighbours) {
-            if (cell.getState() == WireElectronState.ELECTRON_HEAD) {
-                howMany++;
-            }
-        }
-        return howMany;
-
+        return (int) neighbours.stream()
+                .filter(cell -> cell.getState() == ELECTRON_HEAD)
+                .count();
     }
 }

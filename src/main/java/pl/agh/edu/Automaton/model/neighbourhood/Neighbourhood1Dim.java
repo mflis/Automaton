@@ -4,6 +4,7 @@ import pl.agh.edu.Automaton.model.coordinates.CellCoordinates;
 import pl.agh.edu.Automaton.model.coordinates.Coords1D;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -33,27 +34,27 @@ public class Neighbourhood1Dim implements CellNeighbourhood {
         Integer left = current.getX() - 1;
         Integer right = current.getX() + 1;
         Set<CellCoordinates> result = new LinkedHashSet<>();
-        Coords1D leftCoords = getCoordinate(left);
-        Coords1D rightCoords = getCoordinate(right);
-        if (leftCoords != null) {
-            result.add(leftCoords);
+        Optional<Coords1D> leftCoords = getCoordinate(left);
+        Optional<Coords1D> rightCoords = getCoordinate(right);
+        if (leftCoords.isPresent()) {
+            result.add(leftCoords.get());
         }
-        if (rightCoords != null) {
-            result.add(rightCoords);
+        if (rightCoords.isPresent()) {
+            result.add(rightCoords.get());
         }
         return result;
 
     }
 
-    private Coords1D getCoordinate(Integer x) {
+    private Optional<Coords1D> getCoordinate(Integer x) {
         if (isOutside(x)) {
             if (wrapping == Wrapping.ON) {
-                return new Coords1D(mirrorX(x));
+                return Optional.of(new Coords1D(mirrorX(x)));
             } else {
-                return null;
+                return Optional.empty();
             }
         } else {
-            return new Coords1D(x);
+            return Optional.of(new Coords1D(x));
         }
     }
 

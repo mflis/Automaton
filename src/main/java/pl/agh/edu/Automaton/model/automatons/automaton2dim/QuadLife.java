@@ -75,11 +75,10 @@ public class QuadLife extends Automaton2Dim {
     }
 
     private QuadState getAbsentColour(Map<QuadState, Integer> stateCounter) {
-        QuadState absentColour = QuadState.DEAD;
-        for (Map.Entry<QuadState, Integer> entry : stateCounter.entrySet()) {
-            if (entry.getValue() == 0) absentColour = entry.getKey();
-        }
-        return absentColour;
+        return stateCounter.entrySet().stream()
+                .filter(entry -> entry.getValue() == 0)
+                .findAny().map(Map.Entry::getKey)
+                .orElse(QuadState.DEAD);
     }
 
     private Map<QuadState, Integer> getQuadStateIntegerMap() {

@@ -33,7 +33,7 @@ public class MooreNeighbourHood extends NeighbourHood2D {
         for (int x = minX; x <= maxX; x++) {
             for (int y = minY; y <= maxY; y++) {
                 Coords2D current = new Coords2D(x, y);
-                if (areEqual(center, current)) continue;
+                if (center.equals(current)) continue;
 
                 if (isOutside(x, y)) {
                     if (wrapping == Wrapping.ON) {

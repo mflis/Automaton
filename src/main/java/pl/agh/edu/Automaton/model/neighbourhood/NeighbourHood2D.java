@@ -40,9 +40,6 @@ public abstract class NeighbourHood2D implements CellNeighbourhood {
         return isOutsideX(x) || isOutsideY(y);
     }
 
-    boolean areEqual(Coords2D center, Coords2D current) {
-        return center.equals(current);
-    }
 
     private int mirrorX(int x) {
         assert isOutsideX(x) : "you're trying to get X mirror of normal cell";

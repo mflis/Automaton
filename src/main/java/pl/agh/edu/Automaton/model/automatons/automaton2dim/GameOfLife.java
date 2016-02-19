@@ -43,31 +43,18 @@ public class GameOfLife extends Automaton2Dim {
 
     @Override
     protected CellState nextCellState(Cell currentCell, Set<Cell> neighbours) {
-        Integer howManyAlive = countLiving(neighbours);
-        if (currentCell.getState() == BinaryState.ALIVE) {
-            return getState(howManyAlive, survive);
-        } else {
-            return getState(howManyAlive, born);
-        }
+        int howManyAlive = countLiving(neighbours);
 
+        return currentCell.getState() == BinaryState.ALIVE ?
+                getState(howManyAlive, survive) : getState(howManyAlive, born);
     }
 
-    private Integer countLiving(Set<Cell> neighboursStates) {
-        Integer howManyAlive = 0;
-        for (Cell x : neighboursStates) {
-            if (x.getState() == BinaryState.ALIVE) {
-                howManyAlive++;
-            }
-        }
-        return howManyAlive;
+    private int countLiving(Set<Cell> neighboursStates) {
+        return (int) neighboursStates.stream().filter(x -> x.getState() == BinaryState.ALIVE).count();
     }
 
-    private CellState getState(Integer howManyAlive, Set<Integer> conditions) {
-        if (conditions.contains(howManyAlive)) {
-            return BinaryState.ALIVE;
-        } else {
-            return BinaryState.DEAD;
-        }
+    private CellState getState(int howManyAlive, Set<Integer> conditions) {
+        return conditions.contains(howManyAlive) ? BinaryState.ALIVE : BinaryState.DEAD;
     }
 
 
