@@ -8,6 +8,7 @@
 !**/build.gradle
 !**/resources/**
 !**/*.md
+!gradlew**
 
 
 # ...even if they are in subdirectories
