@@ -1,4 +1,4 @@
-#Automaton
+# Automaton
 
 It's an academic project. Automaton implemets following automata:
 
